@@ -1,0 +1,11 @@
+#mapid { height: 480px; }
+
+.popupImage {
+    max-width: 450%;
+    max-height: 450%;
+}
+
+.leaflet-popup-content-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+}
