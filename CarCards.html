@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>M2 THYP </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <style>
+      body {
+    min-height: 100vh;
+    background: #fafafa;
+}
+    </style>
+<body>
+<div class="container">
+  <div class="row" id="etuCards" >  
+   
+</div>
+</div>
+  
+  
+
+</body>
+
+<script>
+
+let urlCars="cars_data.json";
+
+d3.json(urlCars).then(function(data) {
+var c = d3.select('#etuCards').selectAll("card-body p-4").data(data).enter().append(c)
+.attr("style","border: 2px solid grey;margin :2%;background color:whitesmoke;width: 300px;height: fit-content;")
+                c.append("img").attr("style","vertical-align: middle;border-style: none;display: block;margin-left: auto;margin-right: auto; width: 70%;height: 50%;")
+                .attr('src', d=>{
+                  return d["Image_url"];
+                        })
+                .on("click",function(d){
+                            show(d);
+                                       })
+                
+                .attr("data-holder-rendered","true");
+                c.append("h4").attr("class","text-dark").attr("style","text-align: center;")
+                .html(d=>{ 
+                  console.log(d);
+                  let v=d["Manufacturer"]
+                  
+                  return v;
+                        })
+                .on("click",function(d){
+                            show(d);
+                                       })
+                c.append("h4").attr("class","small text-muted font-italic").attr("style","font-size:20px;text-align: center;")
+                .html(d=>{ 
+                  console.log(d);
+                  let v=d["Model"]
+                  
+                  return "Model : "+v;
+                        })
+                .on("click",function(d){
+                            show(d);
+                                       })
+                                      
+                c.append("h4").attr("class","small text-muted font-italic").attr("style","font-size:20px;text-align: center;")
+                .html(d=>{ 
+                  console.log(d);
+                  let v=d["Price"]
+                  
+                  return "Prix : "+v;
+                        })
+                .on("click",function(d){
+                            show(d);
+                                       })
+                .append("img").attr("src","prix.JPG").attr("style","width:20px;").attr("data-holder-rendered","true")
+
+               c.append("h4").attr("class","small text-muted font-italic").attr("style","font-size:20px;text-align: center;")
+                .html(d=>{ 
+                  console.log(d);
+                  let v=d["Paint_Color"]
+                  
+                  return "Couleur : "+v;
+                        })
+                .on("click",function(d){
+                            show(d);
+                                       }) 
+
+                  c.append("h4").attr("class","small text-muted font-italic").attr("style","font-size:20px;text-align: center;")
+                .html(d=>{ 
+                  console.log(d);
+                  let v=d["Year"]
+                  
+                  return "Année de fabrication : "+v;
+                        })
+                .on("click",function(d){
+                            show(d);
+                                       }) 
+                
+                  c.append("h4").attr("class","small text-muted font-italic").attr("style","font-size:20px;text-align: center;")
+                .html(d=>{ 
+                  console.log(d);
+                  let v=d["Fuel"]
+                  
+                  return v;
+                        })
+                .on("click",function(d){
+                            show(d);
+                                       })   
+                .append("img").attr("src","fuel.png").attr("style","width:30px;").attr("data-holder-rendered","true")               
+});
+
+
+function show(d){
+  console.log(d);
+}
+</script>
+</html>
