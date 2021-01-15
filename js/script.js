@@ -1,26 +1,20 @@
-var mymap = L.map('mapid').setView([39.801786, -101.858706], 3);
+var mymap = L.Wrld.map("mapid", "fa8aa21e4ceb9095238b661e789ad376").setView([39.801786, -101.858706], 2);
 var con = 0;
 
-L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}{r}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-}).addTo(mymap);
-
-function getPost(){
-    fetch('https://api.jsonbin.io/b/60017fe6e31fbc3bdef3fa8a')
-    .then((res)=>{
-        return res.json();
+function getPost() {
+  fetch('https://api.jsonbin.io/b/60017fe6e31fbc3bdef3fa8a')
+    .then((res) => {
+      return res.json();
     })
-    .then((post)=>{
-        for (let index = 0; index < 149; index++) {
-            var marker = L.marker([parseFloat(post[con]["Lat"]), parseFloat(post[con]["Long"])]).addTo(mymap);
-            marker.bindPopup("<img src='" + post[con]["Image_url"] + "'" + " class=popupImage " + "/>").openPopup();
+    .then((post) => {
+      for (let index = 0; index < 149; index++) {
+        var marker = L.marker([parseFloat(post[con]["Lat"]), parseFloat(post[con]["Long"])]).addTo(mymap);
+        marker.bindPopup("<img src='" + post[con]["Image_url"] + "'" + " class=popupImage " + "/>" + "<br> " + post[con]["Manufacturer"] + " " + "" + post[con]["Model"] + " " + "<br> Condition : " + post[con]["Condition"] + " " + "<br>Mileage : " + post[con]["Odometer"] + " " + "<br>Price : " + post[con]["Price"] + " "  ).openPopup();
 
-
-            con=con+1;
-        }
+          con = con + 1;
+      }
     })
-    .catch((error)=>{
-        console.log(error);
+    .catch((error) => {
+      console.log(error);
     })
 }
